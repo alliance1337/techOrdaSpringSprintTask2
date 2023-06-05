@@ -10,19 +10,6 @@ import java.sql.Connection;
 @Configuration
 public class BeanConfig {
 
-    @Bean(name = "ilyasBean")
-    public TestB testB(){
-        TestB testB = new TestB("Ilyas", 4545);
-        testB.setCode("Mark");
-        return testB;
-    }
-
-    @Bean(name = "johnBean")
-    public TestB testBg(){
-        TestB testB = new TestB("Ilyas", 4545);
-        testB.setCode("Mark");
-        return testB;
-    }
 
     @Bean
     public DBConnector connection(){
