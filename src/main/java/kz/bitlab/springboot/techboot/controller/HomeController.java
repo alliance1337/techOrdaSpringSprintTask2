@@ -36,7 +36,7 @@ public class HomeController {
     @PostMapping(value = "/add-new-application")
     public String addApplication(ApplicationRequestModel application){
         applicationRequestRepository.save(application);
-        return "redirect:/"; //response.sendRedirect("/");
+        return "redirect:/";
     }
 
 
@@ -46,17 +46,20 @@ public class HomeController {
         return "details";
     }
 
-//    @GetMapping(value = "/add-application")
-//    public String addApplicationPage(Model model){
-//        return "addapplication";
-//    }
+
 
     @GetMapping(value = "/details/{applicationId}")
-    public String musicDetails(@PathVariable(name = "applicationId") Long id, Model model){
-        ApplicationRequestModel application = applicationRequestRepository.findById(id).orElse(null);
-        model.addAttribute("application", application);
+    public String applicationDetails(@PathVariable(name = "applicationId") Long id, Model model){
+        ApplicationRequestModel apl = applicationRequestRepository.findById(id).orElse(null);
+        model.addAttribute("apl", apl);
+        List<String> courseNames = applicationRequestRepository.findAllCourses();
+        model.addAttribute("courseNames", courseNames);
+        model.addAttribute("selectedCourse", apl.getCourseName());
         return "details";
     }
+
+
+
 
     @PostMapping(value = "/save-application")
     public String saveApplication(ApplicationRequestModel application){
@@ -77,6 +80,7 @@ public class HomeController {
         model.addAttribute("courseNames", courseNames);
         return "addapplication";
     }
+
 
 
 

@@ -14,17 +14,6 @@ public interface ApplicationRequestRepository extends JpaRepository<ApplicationR
 
     List<ApplicationRequestModel> findAll();
 
-
-//
-//    List<ApplicationRequestModel> get
-//
-//
-//
-//
-//    @Query("select distinct course_name from applications")
-//    List<ApplicationRequestModel> findAllCourses;
-
-
     @Query("select distinct courseName from ApplicationRequestModel")
     List<String> findAllCourses();
 
