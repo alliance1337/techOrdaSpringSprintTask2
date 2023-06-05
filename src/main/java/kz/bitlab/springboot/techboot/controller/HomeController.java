@@ -73,6 +73,14 @@ public class HomeController {
         model.addAttribute("courseNames", courseNames);
         return "addapplication";
     }
+
+    @GetMapping(value = "/new-applications") //@WebServlet(value = "/") + doGet()
+    public String newApplicationsPage(Model model){
+        List<ApplicationRequestModel> newApplicationRequestModelList = applicationRequestRepository.findAll();//musicRepository.findAllByDurationGreaterThan(0);
+        model.addAttribute("newapplications", newApplicationRequestModelList); // request.setAttribute("muzikalar", musicArray);
+        return "newindexpage"; //request.getRequestDispatcher("/index.html").forward(request,response)
+    }
+
 }
 
 
