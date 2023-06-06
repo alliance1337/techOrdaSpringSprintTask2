@@ -50,12 +50,14 @@ public class HomeController {
         List<String> courseNames = applicationRequestRepository.findAllCourses();
         model.addAttribute("courseNames", courseNames);
         model.addAttribute("selectedCourse", apl.getCourseName());
+        model.addAttribute("handledStatus", apl.isHandled() ? "Заявка не обработана" : "Заявка обработана");
         return "details";
     }
 
 
     @PostMapping(value = "/save-application")
     public String saveApplication(ApplicationRequestModel application){
+//        application.setHandled(false);
         applicationRequestRepository.save(application);
         return "redirect:/";
     }
@@ -80,6 +82,27 @@ public class HomeController {
         model.addAttribute("newapplications", newApplicationRequestModelList); // request.setAttribute("muzikalar", musicArray);
         return "newindexpage"; //request.getRequestDispatcher("/index.html").forward(request,response)
     }
+
+    @GetMapping(value = "/handled-applications")
+    public String handledApplicationsPage(Model model){
+        List<ApplicationRequestModel> handledApplications = applicationRequestRepository.findByHandled(true);
+        model.addAttribute("applications", handledApplications);
+//        model.addAttribute("apl", new ApplicationRequestModel());
+        return "handledapplications";
+    }
+
+    @GetMapping(value = "/unhandled-applications")
+    public String unhandledApplicationsPage(Model model){
+        List<ApplicationRequestModel> unhandledApplications = applicationRequestRepository.findByHandled(false);
+        model.addAttribute("applications", unhandledApplications);
+//        model.addAttribute("apl", new ApplicationRequestModel());
+        return "unhandledapplications";
+    }
+
+
+
+
+
 
 }
 

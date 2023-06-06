@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th = "http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
     <div layout:fragment="siteContent">
-                <div class="row">
+
+
+
+
+        <div class="row">
                     <div class="col-8 mx-auto">
-                        <form action="/save-application" method="POST" th:if="${apl!=null}">
+                            <form action="/save-application" method="POST" th:if="${apl!=null}">
                             <input type="hidden" name="id" th:value="${apl.id}">
                             <div class="row">
                                 <div class="col-12">
@@ -19,15 +23,6 @@
                                            required>
                                 </div>
                             </div>
-
-<!--                            <div class="row mt-2">-->
-<!--                                <div class="col-12">-->
-<!--                                    <select class="form-select" name="courseName">-->
-<!--                                        <option th:each="course : ${courseNames}" th:text="${course}" th:selected="${course == selectedCourse}"></option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
                             <div class="row mt-3">
                                 <div class="col-12">
                                     <label>Курс : </label>
@@ -40,14 +35,6 @@
                                     </select>
                                 </div>
                             </div>
-<!--                            <div class="row mt-2">-->
-<!--                                <div class="col-12">-->
-<!--                                    <input type="text" class="form-control"-->
-<!--                                           name="courseName" placeholder="КУРС"-->
-<!--                                           th:value="${apl.courseName}"-->
-<!--                                           required>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="row mt-3">
                                 <div class="col-12">
                                     <label>Телефон : </label>
@@ -74,16 +61,19 @@
                                            required>
                                 </div>
                             </div>
-                            <div class="row mt-3">
+
+                                <input type="hidden" name="handled" value="true">
+
+
+                                <div class="row mt-3">
                                 <div class="col-12">
-                                    <button class="btn btn-success">ОБРАБОТАТЬ ЗАЯВКУ</button>
+                                    <button class="btn btn-success" th:if="${apl.handled == false}">ОБРАБОТАТЬ ЗАЯВКУ</button>
                                     <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteModal">УДАЛИТЬ ЗАЯВКУ</button>
                                 </div>
                             </div>
                         </form>
 
-
-                        <!-- Modal -->
+                       <!-- Modal -->
                         <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false"
                              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" th:if="${apl!=null}">
                             <div class="modal-dialog">
