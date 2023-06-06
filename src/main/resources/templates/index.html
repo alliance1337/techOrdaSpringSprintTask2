@@ -8,6 +8,7 @@
                 <div class="card mb-4">
                     <div class="card-body" style="height: 200px; overflow: hidden;">
                         <h5 class="card-title text-truncate">
+                            <span th:if="${!apl.isHandled()}" style="font-weight: bold; color: red;">*(Новая) </span>
                             <span>Заявка от </span>
                             <span style="font-weight: bold" th:text="${apl.userName}"></span>
                         </h5>

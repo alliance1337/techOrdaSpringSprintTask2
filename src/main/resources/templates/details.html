@@ -3,6 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
     <div layout:fragment="siteContent">
 
+        <div th:if="${apl.isHandled()}" class="mt-4 text-center">
+            <h4 style="color: green">Обработанная заявка</h4>
+        </div>
+        <div th:unless="${apl.isHandled()}" class="mt-4 text-center">
+            <h4 style="color: red">*** Новая необработанная заявка ***</h4>
+        </div>
+
 
 
 
